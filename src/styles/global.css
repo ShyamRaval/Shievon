@@ -6,8 +6,16 @@
   --color-fire: #f64040;
   --color-ember: #ff7a45;
   --color-ash: #0f1218;
+  --color-pheonix: #ff4500;
   --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-logo: "Space Grotesk", "Inter", system-ui, sans-serif;
   --font-body: "Inter", system-ui, sans-serif;
+
+  /* custom fonts from google fonts */
+  --font-ZenDots: "Zen Dots", sans-serif;
+  --font-KumarOne: "Kumar One", serif;
+  --font-Michroma: "Michroma", sans-serif;
+  --font-Orbitron: "Orbitron", sans-serif;
 }
 
 @layer base {
