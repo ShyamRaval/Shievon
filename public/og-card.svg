@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f64040" />
+      <stop offset="100%" stop-color="#ff7a45" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#050609" />
+  <circle cx="350" cy="150" r="220" fill="url(#g)" opacity="0.35" />
+  <circle cx="900" cy="400" r="260" fill="url(#g)" opacity="0.3" />
+  <text x="80" y="180" font-family="Space Grotesk, Inter, sans-serif" font-size="64" fill="#ffffff" letter-spacing="0.2em">
+    Shievon
+  </text>
+  <text x="80" y="260" font-family="Space Grotesk, Inter, sans-serif" font-size="42" fill="#ffffff">
+    Reinvent. Rebuild. Rise.
+  </text>
+  <text x="80" y="320" font-family="Inter, sans-serif" font-size="24" fill="#e6e6e6" opacity="0.9">
+    Commerce-fueled platform for careers and community.
+  </text>
+  <rect x="80" y="360" width="520" height="4" fill="url(#g)" />
+  <text x="80" y="420" font-family="Inter, sans-serif" font-size="18" fill="#ffbfb0">
+    Marketplace · Consultancy · Social Events
+  </text>
+</svg>
+

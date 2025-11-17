@@ -1,16 +1,27 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import MarketplaceFocus from '../components/MarketplaceFocus.astro';
+import Pillars from '../components/Pillars.astro';
+import Philosophy from '../components/Philosophy.astro';
+import FutureVision from '../components/FutureVision.astro';
+import CTASection from '../components/CTASection.astro';
+import Footer from '../components/Footer.astro';
 
+const meta = {
+  title: 'Shievon — Reinvent. Rebuild. Rise.',
+  description:
+    'Shievon is a next-generation ecosystem unifying commerce, careers, and community. Built for creators, dreamers, rebels, and misfits who want to reshape their world.',
+  ogImage: '/og-card.svg',
+};
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout {...meta}>
+  <Hero />
+  <MarketplaceFocus />
+  <Pillars />
+  <Philosophy />
+  <FutureVision />
+  <CTASection />
+  <Footer />
+</Layout>
