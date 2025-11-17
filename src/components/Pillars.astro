@@ -1,67 +1,48 @@
 ---
-const pillars = [
+const advantages = [
   {
-    name: 'E-commerce',
-    subtitle: 'Marketplace',
+    title: '15-minute citywide delivery',
     description:
-      'A curated marketplace designed for smart discovery, seamless shopping, and elevated experiences.',
-    emphasis: true,
+      'Fast, reliable fulfillment minimizes lead time and maximizes conversion. SRP-powered slots ensure every order feels exclusive and on time.',
+    tag: 'SRP Advantage',
   },
   {
-    name: 'Corporate Consultancy',
-    subtitle: 'Careers & Growth',
+    title: 'Category-limited partnerships',
     description:
-      'A platform empowering individuals to grow, connect, and progress in their professional journeys.',
+      'Own your niche with minimal overlap. We cap vendor slots in each category so your assortment stays celebrated every day, all year.',
+    tag: 'Exclusivity',
   },
   {
-    name: 'Social Events',
-    subtitle: 'Collaborations',
+    title: 'Live product updates',
     description:
-      'A space to create, collaborate, volunteer, and build the communities of tomorrow.',
+      'Update promos, stock, and bundles in real time. Youth shoppers get instant alerts exactly when they are ready to purchase.',
+    tag: 'Real-time Ops',
+  },
+  {
+    title: 'Citywide marketing included',
+    description:
+      'Strategic offline visibility, campus roadshows, and digital virality campaigns—all managed by Shievon with zero upfront spend.',
+    tag: 'Marketing-as-a-Service',
   },
 ];
 ---
 
 <section class="relative bg-night px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-  <div class="mx-auto flex max-w-6xl flex-col gap-12">
-    <div class="max-w-3xl space-y-4">
-      <p class="text-sm font-semibold uppercase tracking-[0.3em] text-fire">Three Pillars</p>
-      <h2 class="text-3xl font-semibold text-white sm:text-4xl">
-        Commerce is the anchor. Careers and community snap into place next.
-      </h2>
-      <p class="text-base text-slate-300">
-        We are launching with the marketplace, but architecting every interaction so consultancy and events connect
-        seamlessly. Think of it as a phoenix structure with commerce at the heart and wings ready for takeoff.
+  <div class="mx-auto flex max-w-6xl flex-col gap-12 lg:flex-row">
+    <div class="lg:w-1/3">
+      <p class="text-sm font-semibold uppercase tracking-[0.3em] text-fire">Why Choose Shievon</p>
+      <h2 class="mt-4 text-3xl font-semibold text-white sm:text-4xl">An integrated retail OS purpose-built for youth demand.</h2>
+      <p class="mt-4 text-base text-slate-300">
+        Shievon synchronizes logistics, merchandising, visibility, and loyalty so vendors can scale effortlessly. While
+        others chase discounts, we guarantee verified value and a pipeline of buyers who show up again and again.
       </p>
     </div>
-
-    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {pillars.map((pillar) => (
-        <article
-          class={`relative flex flex-col rounded-3xl border border-white/5 p-6 text-slate-200 transition ${
-            pillar.emphasis
-              ? 'bg-gradient-to-b from-fire/15 via-fire/5 to-transparent shadow-[0_40px_120px_rgba(248,113,113,0.35)] md:col-span-2 lg:col-span-1 lg:row-span-2 lg:p-8'
-              : 'bg-white/5'
-          }`}
-        >
-          <div class="flex items-center gap-3">
-            <span class="rounded-2xl bg-night/80 px-3 py-1 text-xs uppercase tracking-[0.3em] text-fire">{pillar.subtitle}</span>
-            {pillar.emphasis && <span class="text-xs uppercase tracking-[0.3em] text-white/70">Launch focus</span>}
-          </div>
-          <h3 class={`mt-6 text-2xl font-semibold text-white ${pillar.emphasis ? 'text-3xl' : ''}`}>{pillar.name}</h3>
-          <p class="mt-4 text-sm text-slate-300">{pillar.description}</p>
-          <div class="mt-6 flex-1 rounded-2xl border border-white/10 bg-black/20 p-4">
-            <svg viewBox="0 0 200 120" role="img" aria-hidden="true" class="h-32 w-full text-fire/60">
-              <rect x="10" y="20" width="180" height="80" rx="16" class="fill-current opacity-10" />
-              <path
-                d="M20 80 C60 20 120 120 180 40"
-                class="fill-none stroke-current"
-                stroke-width="6"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </div>
+    <div class="grid flex-1 gap-6 md:grid-cols-2">
+      {advantages.map((advantage) => (
+        <article class="rounded-3xl border border-white/5 bg-gradient-to-b from-white/5 to-transparent p-6 text-slate-200 shadow-[0_25px_80px_rgba(255,122,69,0.12)]">
+          <span class="text-xs uppercase tracking-[0.3em] text-fire/80">{advantage.tag}</span>
+          <h3 class="mt-4 text-xl font-semibold text-white">{advantage.title}</h3>
+          <p class="mt-3 text-sm text-slate-300">{advantage.description}</p>
         </article>
       ))}
     </div>
