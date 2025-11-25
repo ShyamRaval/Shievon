@@ -1,53 +1,175 @@
-<section id="cta" class="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-  <div class="mx-auto max-w-5xl rounded-[3rem] border border-fire/30 bg-gradient-to-r from-fire to-ember p-10 text-white shadow-[0_35px_120px_rgba(248,113,113,0.55)]">
-    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-white/80">Partner with Shievon today!</p>
-    <h2 class="mt-6 text-3xl font-semibold sm:text-4xl">Let’s build India’s youth retail revolution together.</h2>
-    <p class="mt-4 text-base text-white/90">
-      Shievon is stronger, sharper, and focused on empowering visionary vendors. Join the movement and turn your
-      storefront into the most trusted destination for students and young entrepreneurs.
-    </p>
+---
+export type CTAContact = {
+  label: string;
+  value: string;
+  href?: string;
+  target?: '_blank' | '_self';
+  rel?: string;
+};
 
-    <div class="mt-8 grid gap-6 text-left text-white/90 sm:grid-cols-3">
-      <div>
-        <p class="text-xs uppercase tracking-[0.3em] text-white/70">Phone</p>
-        <a class="mt-2 block text-lg font-semibold text-white" href="tel:+919876543210">
-          +91 98765 43210
-        </a>
-      </div>
-      <div>
-        <p class="text-xs uppercase tracking-[0.3em] text-white/70">Email</p>
-        <a class="mt-2 block text-lg font-semibold text-white" href="mailto:partners@shievon.com">
-          partners@shievon.com
-        </a>
-      </div>
-      <div>
-        <p class="text-xs uppercase tracking-[0.3em] text-white/70">Website</p>
-        <a class="mt-2 block text-lg font-semibold text-white" href="https://shievon.com" target="_blank" rel="noreferrer">
-          shievon.com
-        </a>
-      </div>
-    </div>
+type CTAInputType = 'text' | 'email' | 'tel' | 'url' | 'search' | 'number';
+type CTAInputMode = 'text' | 'email' | 'tel' | 'url' | 'search' | 'none' | 'numeric' | 'decimal';
 
-    <form class="mt-10 flex flex-col gap-4 sm:flex-row">
-      <input
-        type="text"
-        required
-        placeholder="Business name"
-        class="w-full rounded-full border border-white/40 bg-white/15 px-6 py-3 text-base text-white placeholder-white/70 outline-none ring-white/70 focus:ring-2"
-      />
-      <input
-        type="email"
-        required
-        placeholder="Work email"
-        class="w-full rounded-full border border-white/40 bg-white/15 px-6 py-3 text-base text-white placeholder-white/70 outline-none ring-white/70 focus:ring-2"
-      />
-      <button
-        type="submit"
-        class="w-full rounded-full bg-white/95 px-8 py-3 text-base font-semibold uppercase tracking-wide text-fire transition hover:bg-white sm:w-auto"
-      >
-        Request a call
-      </button>
-    </form>
+export type CTAFormField = {
+  name: string;
+  placeholder: string;
+  type?: CTAInputType;
+  required?: boolean;
+  inputMode?: CTAInputMode;
+  autoComplete?: string;
+  ariaLabel?: string;
+};
+
+export type CTAButtonConfig = {
+  label: string;
+  type?: 'button' | 'submit' | 'reset';
+  ariaLabel?: string;
+};
+
+export interface CTASectionProps {
+  id?: string;
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  contacts?: CTAContact[];
+  formFields?: CTAFormField[];
+  button?: CTAButtonConfig | null;
+  wrapperClass?: string;
+  panelClass?: string;
+}
+
+const defaultContacts: CTAContact[] = [
+  {
+    label: 'Phone',
+    value: '+91 73173 72172',
+    href: 'tel:+917317372172',
+  },
+  {
+    label: 'Email',
+    value: 'collab@shievon.in',
+    href: 'mailto:collab@shievon.in',
+  },
+  {
+    label: 'Website',
+    value: 'shievon.in',
+    href: 'https://shievon.in',
+    target: '_blank',
+    rel: 'noreferrer',
+  },
+];
+
+const defaultFormFields: CTAFormField[] = [
+  {
+    name: 'businessName',
+    placeholder: 'Business name',
+    required: true,
+  },
+  {
+    name: 'workEmail',
+    placeholder: 'Work email',
+    type: 'email',
+    required: true,
+  },
+];
+
+const props = Astro.props as CTASectionProps;
+
+const {
+  id = 'cta',
+  eyebrow = 'Partner with Shievon today!',
+  title = 'Let’s build India’s youth retail revolution together.',
+  description = 'Shievon is stronger, sharper, and focused on empowering visionary vendors. Join the movement and turn your storefront into the most trusted destination for students and young entrepreneurs.',
+  contacts = defaultContacts,
+  formFields = defaultFormFields,
+  wrapperClass = '',
+  panelClass = '',
+} = props;
+
+const button = props.button ?? { label: 'Request a call', type: 'submit' };
+
+const combineClassNames = (base: string, extra?: string) => [base, extra].filter(Boolean).join(' ');
+
+const getContactLinkAttrs = (contact: CTAContact) => {
+  const target = contact.target ?? (contact.href?.startsWith('http') ? '_blank' : undefined);
+  const rel = contact.rel ?? (target === '_blank' ? 'noreferrer' : undefined);
+  return { target, rel };
+};
+---
+
+<section id={id} class={combineClassNames('px-4 py-16 sm:px-6 lg:px-8 lg:py-24', wrapperClass)}>
+  <div
+    class={combineClassNames(
+      'mx-auto max-w-5xl rounded-[3rem] border border-fire/30 bg-gradient-to-r from-fire to-ember p-10 text-white shadow-[0_35px_120px_rgba(248,113,113,0.55)]',
+      panelClass
+    )}
+  >
+    {eyebrow && (
+      <p class="text-sm font-semibold uppercase tracking-[0.3em] text-white/80">
+        {eyebrow}
+      </p>
+    )}
+    {title && (
+      <h2 class="mt-6 text-3xl font-semibold sm:text-4xl">
+        {title}
+      </h2>
+    )}
+    {description && (
+      <p class="mt-4 text-base text-white/90">
+        {description}
+      </p>
+    )}
+
+    {contacts.length > 0 && (
+      <div class="mt-8 grid gap-6 text-left text-white/90 sm:grid-cols-3">
+        {contacts.map((contact) => {
+          const { target, rel } = getContactLinkAttrs(contact);
+          const hasLink = Boolean(contact.href);
+          return (
+            <div>
+              <p class="text-xs uppercase tracking-[0.3em] text-white/70">{contact.label}</p>
+              {hasLink ? (
+                <a
+                  class="mt-2 block text-lg font-semibold text-white"
+                  href={contact.href}
+                  target={target}
+                  rel={rel}
+                >
+                  {contact.value}
+                </a>
+              ) : (
+                <p class="mt-2 block text-lg font-semibold text-white">
+                  {contact.value}
+                </p>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    )}
+
+    {formFields.length > 0 && (
+      <form class="mt-10 flex flex-col gap-4 sm:flex-row">
+        {formFields.map((field) => (
+          <input
+            type={field.type ?? 'text'}
+            name={field.name}
+            placeholder={field.placeholder}
+            required={field.required}
+            inputmode={field.inputMode}
+            autocomplete={field.autoComplete}
+            aria-label={field.ariaLabel ?? field.placeholder}
+            class="w-full rounded-full border border-white/40 bg-white/15 px-6 py-3 text-base text-white placeholder-white/70 outline-none ring-white/70 focus:ring-2"
+          />
+        ))}
+        <button
+          type={button.type ?? 'submit'}
+          aria-label={button.ariaLabel ?? button.label}
+          class="w-full rounded-full bg-white/95 px-8 py-3 text-base font-semibold uppercase tracking-wide text-fire transition hover:bg-white sm:w-auto"
+        >
+          {button.label}
+        </button>
+      </form>
+    )}
   </div>
 </section>
 
